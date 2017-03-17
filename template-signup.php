@@ -5,9 +5,6 @@
 
 get_header(); 
 ?>
-
-
-
 <div class="page-holder page-layout">
 <?php require_once TEMPLATEPATH .'/includes/signup-action.php'; ?>
 	<div class="row">
@@ -75,7 +72,4 @@ get_header();
 </div>
 </div>
 </div>
-
-
-
 <?php get_footer(); ?>
