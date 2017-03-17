@@ -1,7 +1,6 @@
 <?php
 if(isset($_POST['register'])){
 
-//echo '<pre>'; print_r($_POST); echo '</pre>';
     global $reg_errors;
     $reg_errors = new WP_Error;
     
@@ -15,18 +14,24 @@ if(isset($_POST['register'])){
 	if ( empty( $username ) || empty( $password ) || empty( $email ) || empty( $name ) ) {
        $reg_errors->add('field', 'All form fields are required.');
     }
-    else if ( username_exists( $username ) ) {
+    
+	if ( username_exists( $username ) ) {
        $reg_errors->add('user_name', 'Sorry, that username already exists!');
 	}
-	else if ( ! validate_username( $username ) ) {
+	
+	if ( ! validate_username( $username ) ) {
        $reg_errors->add( 'username_invalid', 'Sorry, the username you entered is not valid' );
     }
-	else if ( !is_email( $email ) ) {
+	
+	if ( !is_email( $email ) ) {
       $reg_errors->add( 'email_invalid', 'Email is not valid' );
     }
-	else if ( email_exists( $email ) ) {
+	
+	if ( email_exists( $email ) ) {
       $reg_errors->add( 'email', 'Email Already in use' );
-    }else if ( $password != $cnfpass ) {
+    }
+	
+	if ( $password != $cnfpass ) {
       $reg_errors->add( 'password', 'Password is mismatch.' );
     }
 	
@@ -65,7 +70,7 @@ if(isset($_POST['register'])){
 		$secure_cookie = is_ssl() ? true : false;
 		wp_set_auth_cookie( $user_id, true, $secure_cookie );
 
-		wp_redirect( home_url( '/myaccount/' ) );
+		wp_redirect( home_url() );
 		exit();    
     }
 }

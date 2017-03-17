@@ -1,7 +1,6 @@
 <?php
 if(isset($_POST['login'])){
 
-//echo '<pre>'; print_r($_POST); echo '</pre>';
     global $reg_errors;
     $reg_errors = new WP_Error;
     
@@ -31,7 +30,7 @@ if(isset($_POST['login'])){
 		$secure_cookie = is_ssl() ? true : false;
 		wp_set_auth_cookie( $users->data->ID, true, $secure_cookie );
 
-		wp_redirect( home_url( '/myaccount/' ) );
+		wp_redirect( home_url() );
 		exit();    
     }
 
